@@ -4,6 +4,7 @@
     --muted: #94a3b8;
     --accent: #ffbf69;
     --accent-2: #6be4b4;
+    --header-height: 64px;
     --glass: rgba(255,255,255,0.06);
     --radius: 12px;
 }
@@ -24,18 +25,20 @@ body{
 
 /* Header / Nav */
 header{
-    position:fixed;left:0;right:0;top:0;z-index:40;
+    /* Usamos sticky para que el header ocupe espacio y no tape el contenido en pantallas pequeñas
+       y seguiremos teniendo el efecto de quedarse en la parte superior al hacer scroll */
+    position:sticky;left:0;right:0;top:0;z-index:40;
     backdrop-filter: blur(6px);
     background: linear-gradient(180deg, rgba(11,18,32,0.6), rgba(11,18,32,0.35));
     border-bottom: 1px solid rgba(255,255,255,0.04);
 }
-nav{display:flex;align-items:center;height:64px}
-nav ul{display:flex;gap:1.25rem;list-style:none;margin:0 auto}
+nav{display:flex;align-items:center;min-height:var(--header-height);padding:0 1rem}
+nav ul{display:flex;gap:1.25rem;list-style:none;margin:0 auto;flex-wrap:wrap;justify-content:center;align-items:center}
 nav a{color:var(--muted);text-decoration:none;padding:.5rem .75rem;border-radius:8px;transition:all .18s ease;font-weight:600}
 nav a:hover, nav a:focus{color:var(--accent);background:var(--glass);transform:translateY(-2px)}
 
-/* Ensure content not hidden under fixed header */
-main{padding-top:84px}
+/* No necesitamos padding fijo en main porque header ahora está en flujo (sticky) */
+main{padding-top:0}
 
 /* Hero */
 .hero{
